@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="contact-page">
+
+    <!-- LEFT INFO -->
+    <div class="contact-info">
+        <h1>Let's Talk</h1>
+        <p>
+            Have questions about admissions, classes, or timings?
+            Request a callback and our team will contact you shortly.
+        </p>
+
+        <div class="contact-highlights">
+            <div>Fast Response</div>
+            <div>Expert Guidance</div>
+            <div>Student Friendly Support</div>
+        </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="contact-card">
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- STUDENT NAME -->
+            <div class="input-group">
+                <input type="text" name="student_name" required>
+                <label>Student Name</label>
+            </div>
+
+            <!-- FATHER NAME -->
+            <div class="input-group">
+                <input type="text" name="father_name" required>
+                <label>Father Name</label>
+            </div>
+
+            <!-- PHONE -->
+            <div class="input-group phone-group">
+
+                <span class="country-code">+91</span>
+
+                <input type="tel"
+                       name="phone"
+                       pattern="[0-9]{10}"
+                       required>
+
+                <label>Phone Number</label>
+
+            </div>
+
+            <!-- CLASS -->
+            <div class="input-group">
+
+                <select name="class" required>
+                    <option value="" disabled selected hidden></option>
+
+                    <option>Nursery</option>
+                    <option>LKG</option>
+                    <option>UKG</option>
+
+                    <option>Class 1</option>
+                    <option>Class 2</option>
+                    <option>Class 3</option>
+                    <option>Class 4</option>
+                    <option>Class 5</option>
+
+                    <option>Class 6</option>
+                    <option>Class 7</option>
+                    <option>Class 8</option>
+                    <option>Class 9</option>
+                    <option>Class 10</option>
+                </select>
+
+                <label>Class</label>
+
+            </div>
+
+            <!-- MESSAGE -->
+            <div class="input-group">
+                <textarea name="message" rows="4" required></textarea>
+                <label>Message</label>
+            </div>
+
+            <!-- BUTTON -->
+            <button type="submit" class="send-btn">
+                Request a Callback
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

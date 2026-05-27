@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="event-detail">
+
+    <div class="event-carousel" data-carousel>
+        <div class="event-carousel-track" data-carousel-track>
+            {% for m in event.media.all %}
+
+                <div class="event-slide">
+                    {% if m.image %}
+                        <img src="{{ m.image.url }}"
+                             class="detail-media"
+                             alt="{{ event.title }}"
+                             onclick="openImage('{{ m.image.url }}')">
+                    {% endif %}
+
+                    {% if m.video %}
+                        <video controls class="detail-media">
+                            <source src="{{ m.video.url }}">
+                        </video>
+                    {% endif %}
+                </div>
+
+            {% empty %}
+                <p class="empty-events">No media available</p>
+            {% endfor %}
+        </div>
+
+        {% if event.media.all|length > 1 %}
+            <button type="button"
+                    class="carousel-btn carousel-prev"
+                    data-carousel-prev
+                    onclick="moveEventSlide(this, -1)"
+                    aria-label="Previous media">
+                &#8249;
+            </button>
+
+            <button type="button"
+                    class="carousel-btn carousel-next"
+                    data-carousel-next
+                    onclick="moveEventSlide(this, 1)"
+                    aria-label="Next media">
+                &#8250;
+            </button>
+
+            <div class="carousel-dots" data-carousel-dots>
+                {% for m in event.media.all %}
+                    <button type="button"
+                            class="carousel-dot {% if forloop.first %}active{% endif %}"
+                            data-carousel-dot="{{ forloop.counter0 }}"
+                            onclick="goToEventSlide(this, {{ forloop.counter0 }})"
+                            aria-label="Show media {{ forloop.counter }}">
+                    </button>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <h1>{{ event.title }}</h1>
+    <p>{{ event.description }}</p>
+
+</div>
+
+<div id="imagePopup" class="image-popup">
+
+    <span class="close-popup" onclick="closeImage()">
+        &times;
+    </span>
+
+    <img id="popupImage" class="popup-image">
+
+</div>
+
+<script>
+
+function openImage(imageSrc) {
+    document.getElementById("imagePopup").style.display = "flex";
+    document.getElementById("popupImage").src = imageSrc;
+}
+
+function closeImage() {
+    document.getElementById("imagePopup").style.display = "none";
+}
+
+</script>
+
+{% endblock %}

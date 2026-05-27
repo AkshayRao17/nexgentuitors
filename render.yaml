@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: nexgentuitors
+    runtime: python
+    plan: free
+    buildCommand: bash build.sh
+    startCommand: gunicorn nexgentuitors.wsgi:application
+    envVars:
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_SESSION_COOKIE_SECURE
+        value: "True"
+      - key: DJANGO_CSRF_COOKIE_SECURE
+        value: "True"
+      - key: WEB_CONCURRENCY
+        value: "4"

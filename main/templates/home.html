@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<div class="hero">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-container">
+
+        <!-- LOGO -->
+        <div class="hero-left fade-in delay-1">
+            <img src="{% static 'images/logo.png' %}" class="hero-logo" alt="NexGen Tuitors logo">
+        </div>
+
+        <!-- TEXT -->
+        <div class="hero-center">
+            <h1 class="fade-in delay-1">NexGen Tuitors</h1>
+            <p class="fade-in delay-2">
+                Building your future with quality education
+            </p>
+
+            <div class="hero-buttons">
+                <a href="{% url 'contact' %}" class="btn primary">Join Now</a>
+                <a href="{% url 'about' %}" class="btn secondary">Learn More</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ================= HIGHLIGHT ================= -->
+<div class="home-highlight">
+    <h2>Empowering Students for a Better Future</h2>
+    <p>
+        At NexGen Tuitors, we focus on building strong academic foundations,
+        boosting confidence, and helping every student achieve success.
+    </p>
+</div>
+
+
+<!-- ================= COURSES ================= -->
+<div class="container">
+    <h2>Our Courses</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Maths</h3>
+            <p>Strong foundation</p>
+        </div>
+
+        <div class="card">
+            <h3>Science</h3>
+            <p>Physics, Chemistry, Biology</p>
+        </div>
+
+        <div class="card">
+            <h3>English</h3>
+            <p>Communication skills</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- ================= FEATURES ================= -->
+<div class="features-outer">
+
+    <div class="features-section">
+
+        <h2>Why Choose NexGen Tuitors</h2>
+
+        <div class="features-grid">
+
+            <div class="feature-card">
+                <div class="icon-circle">B</div>
+                <h3>Strong Basics</h3>
+                <p>We focus on concept clarity instead of memorization.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-circle">P</div>
+                <h3>Personal Attention</h3>
+                <p>Every student gets individual support and guidance.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-circle">T</div>
+                <h3>Regular Tests</h3>
+                <p>Continuous assessment to track progress and improvement.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-circle">D</div>
+                <h3>Doubt Clearing</h3>
+                <p>All doubts are solved instantly to build confidence.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

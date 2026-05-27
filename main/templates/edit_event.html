@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="event-title">Edit Event</h1>
+
+<div class="edit-event-layout">
+
+    <section class="uploaded-media-section">
+        <h2>Uploaded Media</h2>
+
+        <div class="edit-media-grid">
+            {% if event.media.all %}
+
+                {% for m in event.media.all %}
+
+                    <div class="media-item">
+
+                        <div class="media-frame">
+                            {% if m.image %}
+                                <img src="{{ m.image.url }}" class="media-content" alt="{{ event.title }}">
+                            {% endif %}
+
+                            {% if m.video %}
+                                <video controls class="media-content">
+                                    <source src="{{ m.video.url }}">
+                                </video>
+                            {% endif %}
+                        </div>
+
+                        <form method="POST" action="{% url 'delete_media' m.id %}" class="media-delete-form">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-media-btn">Delete</button>
+                        </form>
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+                <p class="empty-events">No media uploaded</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="edit-event-form-section">
+        <form method="POST" enctype="multipart/form-data" class="edit-form admin-event-form">
+            {% csrf_token %}
+
+            <h2>Event Details</h2>
+
+            <input type="text" name="title" value="{{ event.title }}" required>
+
+            <textarea name="description" required>{{ event.description }}</textarea>
+
+            <label class="file-label">Add More Images/Videos</label>
+            <input type="file" name="media" multiple>
+
+            <button type="submit" class="update-btn">Update Event</button>
+        </form>
+    </section>
+
+</div>
+
+{% endblock %}
